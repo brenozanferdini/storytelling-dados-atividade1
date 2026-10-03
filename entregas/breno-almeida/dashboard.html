@@ -315,15 +315,17 @@ const soma = arr => arr.reduce((a, d) => a + d.n, 0);
 const taxa = arr => { const n = soma(arr); return n ? arr.reduce((a, d) => a + d.re * d.n, 0) / n * 100 : 0; };
 const TOTAL = soma(DADOS), BR = taxa(DADOS);
 const reeleitos = soma(DADOS.filter(d => d.re));
-// Votação mediana por grupo (reeleitos × novos) — calculada no pandas a partir da base completa (65,0% e 54,4%)
-const medRe = 65.0, medNovo = 54.4;
 const chapaNova = soma(DADOS.filter(d => !d.re && !d.vre));
 
+// KPIs fixos no Brasil (a faixa do seletor mostra o resumo da UF), na ordem da história: placar → onde → como → quem
+const tx = r => taxa(DADOS.filter(d => d.reg === r));
+const forte = DADOS.filter(d => ["70–80%", "80–99%"].includes(d.fv));
+const sinalCont = soma(DADOS.filter(d => !d.re && (d.vre || d.oc === "Ex-prefeito voltando ao cargo")));
 kpis("kpis", [
-  { valor: fmt.pct(BR), desc: `dos prefeitos foram reeleitos (${fmt.num(reeleitos)} de ${fmt.num(TOTAL)})`, tipo: "destaque" },
-  { valor: fmt.pct(chapaNova / TOTAL * 100), desc: "das prefeituras trocaram prefeito e vice" },
-  { valor: `${fmt.pct(medRe, 0)} × ${fmt.pct(medNovo, 0)}`, desc: "votação mediana: reeleitos × novos prefeitos" },
-  { valor: "37% × 51%", desc: "reeleitos no Sul × no Norte" },
+  { valor: fmt.pct(BR), desc: `dos prefeitos do Brasil foram reeleitos (${fmt.num(reeleitos)} de ${fmt.num(TOTAL)})`, tipo: "destaque" },
+  { valor: `${fmt.pct(tx("Sul"), 0)} × ${fmt.pct(tx("Norte"), 0)}`, desc: "reeleitos no Sul × no Norte" },
+  { valor: `${fmt.num(taxa(forte) / 100 * 4, 0)} em 4`, desc: `vencedores com 70% a 99% dos votos eram reeleitos (${fmt.pct(taxa(forte))})` },
+  { valor: fmt.num(sinalCont), desc: `novos prefeitos com sinal de continuidade: vice reeleito ou ex-prefeito voltando (${fmt.pct(sinalCont / (TOTAL - reeleitos) * 100, 0)} dos novos)` },
 ]);
 
 /* Seletor de UF: destaca o estado escolhido nos gráficos 2 e 3 */

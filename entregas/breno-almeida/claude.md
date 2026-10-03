@@ -73,6 +73,7 @@ Depois da 1ª versão, fiz uma revisão estruturada com o Claude, uma decisão p
 | 8 | Frase-chave da P4 | "70% a 99% dos votos: 3 em cada 4" (75,0%) | Com a chapa única incluída, seriam 73,4%; o recorte exato evita arredondar o número-vitrine |
 | 9 | Skill | Exemplo do meu tema removido e nova seção "Rigor e honestidade" com as regras aprendidas na revisão | O README exige skill genérica; as regras novas são as que de fato mudaram o painel |
 | 10 | Celular | Abaixo de 600px, cada gráfico mantém 560px de largura e rola de lado dentro da caixa, com a dica "↔ arraste" | A 400px os rótulos caíam para cerca de 6px; o público principal vê projetado, então preferi uma solução de baixo risco a redesenhar a biblioteca |
+| 11 | KPIs | 44,5% (Brasil) · 37% × 51% (Sul × Norte) · 3 em 4 (70% a 99% dos votos) · 277 novos com sinal de continuidade | Resumem a história na ordem das seções; saiu a "votação mediana" (jargão) e o KPI que era quase o complemento do primeiro. 277 = 232 com vice reeleito + 73 ex-prefeitos − 28 em comum |
 
 ## Instruções para o Claude
 

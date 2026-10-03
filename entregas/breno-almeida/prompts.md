@@ -197,6 +197,16 @@ b, pode seguir
 
 ---
 
+### Prompt 17
+
+```
+a, pode seguir
+```
+
+**Decisão:** os 4 KPIs do topo. **Antes:** 44,5% reeleitos · 51,4% trocaram prefeito e vice · "65% × 54% votação mediana" · 37% × 51% Sul × Norte. **Depois:** 44,5% (Brasil) · 37% × 51% · **3 em 4** (vencedores com 70% a 99% dos votos eram reeleitos) · **277** novos prefeitos com sinal de continuidade. **Por quê:** "mediana" é jargão para o público, o 2º KPI era quase o complemento do 1º, e o topo não tinha o número mais forte nem o achado mais ligado ao tema. Ao calcular os 277, o Claude conferiu a sobreposição: 232 com vice reeleito e 73 ex-prefeitos têm 28 casos em comum, então usei o número único e não a soma ingênua (305). Os KPIs ficam fixos no Brasil, e o rótulo diz isso, porque a faixa do seletor já mostra o resumo da UF.
+
+---
+
 ## O que eu faria diferente
 
 1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.
