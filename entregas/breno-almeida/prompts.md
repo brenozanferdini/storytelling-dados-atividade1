@@ -207,6 +207,16 @@ a, pode seguir
 
 ---
 
+### Prompt 18
+
+```
+a, pode seguir
+```
+
+**Decisão:** o título da P1. **Antes:** "Pouco mais da metade das prefeituras trocou prefeito e vice. Em 44% **delas** o prefeito foi reeleito." Esse "delas" podia ser lido como "44% das que trocaram", o que é contraditório. **Depois:** "44% mantiveram o prefeito, 51% trocaram prefeito e vice, e 4% ficaram no meio-termo: prefeito novo com o vice de antes." **Por quê:** elimina a ambiguidade, segue a ordem das três partes da barra logo abaixo e deixa de repetir o `<h1>`, introduzindo a ideia de meio-termo que os KPIs e a conclusão retomam.
+
+---
+
 ## O que eu faria diferente
 
 1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.
