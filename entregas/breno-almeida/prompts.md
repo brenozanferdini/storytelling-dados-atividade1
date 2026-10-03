@@ -157,6 +157,16 @@ a, pode seguir
 
 ---
 
+### Prompt 13
+
+```
+a, pode seguir
+```
+
+**Decisão:** a conclusão. **Antes:** "Quem decide o desempate **é** a força do grupo no poder" e "onde o prefeito era dominante, ele ficou". **Depois:** "Continuidade e renovação quase empatam. O desempate varia por território e acompanha a força nas urnas", seguido de "a base mostra onde e como, mas não diz por quê". **Por quê:** a base mostra associação, não causa. Além disso, a votação é de 2024 e não indica dominância anterior, então a frase antiga afirmava mais do que os dados permitem. Também integrei o achado da P5 (73 ex-prefeitos) à hipótese "rosto ou grupo" e acrescentei um fechamento que devolve a pergunta ao município de cada aluno, como pede o briefing.
+
+---
+
 ## O que eu faria diferente
 
 1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.
