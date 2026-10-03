@@ -14,7 +14,7 @@ description: Regras visuais e narrativas para construir dashboards em HTML únic
 ## Procedimento (nesta ordem)
 
 1. **Ler o dicionário de dados antes do CSV.** Anote a unidade de cada linha, colunas que se repetem entre linhas, o significado de célula vazia, o separador decimal e os critérios de inclusão. Escreva os cuidados no `claude.md`.
-2. **Responder antes de desenhar.** Quebre a pergunta norteadora em 4 a 6 subperguntas. Calcule cada resposta em pandas e escreva-a como **uma frase com número** ("O Sul renova mais: 37% de reeleitos contra 51% no Norte").
+2. **Responder antes de desenhar.** Quebre a pergunta norteadora em 4 a 6 subperguntas. Calcule cada resposta em pandas e escreva-a como **uma frase com número** ("A espera por cirurgia no hospital A é o dobro da do hospital B: 180 contra 90 dias").
 3. **Descobrir o que a base NÃO responde** e decidir como dizer isso no painel: nota de método, aviso junto ao gráfico ou pergunta aberta ao público. Nunca preencha lacuna com suposição.
 4. **Escolher um gráfico por subpergunta** (tabela abaixo) e definir **o único elemento em destaque**, que é o que prova a frase.
 5. **Agregar em pandas e embutir só a tabela agregada** no HTML, com contagens (`n`). Assim o navegador recalcula taxas por filtro sem carregar microdados.
@@ -46,6 +46,16 @@ description: Regras visuais e narrativas para construir dashboards em HTML únic
 - **Barras e colunas começam em zero.**
 - Não emende fontes ou metodologias diferentes numa mesma série.
 
+## Rigor e honestidade
+
+- **Associação não é causa.** Títulos e conclusões descrevem o padrão ("X anda junto com Y", "X acompanha Y"). O *porquê* vira hipótese explícita ou pergunta ao público, nunca afirmação.
+- **Resultado nulo também é resultado.** Quando a resposta for "não muda" ou "não explica", não destaque nenhuma barra, desenhe uma linha de referência (média ou meta) e use a seção como ponte para a próxima ("Se não é X, o que separa…?").
+- **Não destaque diferença pequena com n pequeno.** Antes de pintar um item de azul, confira se a diferença em relação à média é relevante e se o grupo tem tamanho suficiente. Se não tiver, mostre o n e deixe em cinza.
+- **Categoria residual fora do ranking.** "Outros" ou "Outras" não disputa posição com categorias reais. Informe o tamanho dela no texto ou na nota.
+- **Número-vitrine no recorte exato.** A frase que vai no título, no KPI ou num card deve citar o recorte que produz exatamente aquele número ("de 70% a 99%", e não "acima de 70%"). Confira em pandas antes de publicar e repita o mesmo número em todos os lugares onde ele aparece.
+- **Declarado não é verificado.** Variáveis autodeclaradas (ocupação, perfil, situação) devem ser apresentadas como "declarada", com o viés provável explicado junto ao gráfico.
+- **Diga o que a base não responde,** no ponto da história em que a pergunta surge, e não só no rodapé.
+
 ## Paleta de cores
 
 Paleta Okabe-Ito, segura para daltonismo:
@@ -73,6 +83,9 @@ Paleta Okabe-Ito, segura para daltonismo:
 - [ ] Cada subpergunta tem 1 gráfico principal, 1 destaque de cor e um bloco "como ler".
 - [ ] 2 ou mais números do HTML conferidos contra o cálculo em pandas.
 - [ ] Os limites da base estão declarados no painel (notas de método ou aviso junto ao gráfico).
+- [ ] Nenhum título afirma causa que os dados só mostram como associação.
+- [ ] Resultado nulo sem destaque de cor e com linha de referência; nenhuma categoria residual no ranking.
+- [ ] Cada número-vitrine (h1, KPI, título, card) foi conferido no recorte exato e é igual em todos os lugares onde aparece.
 - [ ] Nenhum `{{`, `TODO` ou texto de exemplo esquecido.
 - [ ] Abre com duplo clique, sem erros no console; filtros e interações funcionam.
 - [ ] A 400px de largura não há rolagem horizontal e os rótulos não se sobrepõem.

@@ -177,6 +177,16 @@ a, pode seguir
 
 ---
 
+### Prompt 15
+
+```
+b, pode seguir
+```
+
+**Decisão:** a skill. Relendo a `skill.md`, encontrei uma violação da regra do README: o exemplo de "frase com número" citava o meu próprio tema ("O Sul renova mais: 37%…"). Troquei por um exemplo neutro. Também acrescentei uma seção **"Rigor e honestidade"**, com as regras genéricas que surgiram nesta revisão: associação não é causa, resultado nulo sem destaque e com linha de referência, nada de destacar diferença pequena com n pequeno, categoria residual fora do ranking, número-vitrine no recorte exato, "declarado não é verificado" e limites ditos no ponto da história. Cada uma ganhou um item no checklist. **Por quê:** a skill precisa refletir o que de fato orientou o resultado. Essas regras mudaram o painel, e vão servir para o trabalho final.
+
+---
+
 ## O que eu faria diferente
 
 1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.

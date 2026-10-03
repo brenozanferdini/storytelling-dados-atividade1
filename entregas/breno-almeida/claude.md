@@ -71,6 +71,7 @@ Depois da 1ª versão, fiz uma revisão estruturada com o Claude, uma decisão p
 | 6 | Card da galeria | Texto com até 280 caracteres e o achado mais forte | A galeria corta em 280 caracteres |
 | 7 | Conclusão | "Acompanha a força nas urnas" (associação), ex-prefeitos na hipótese 2 e fechamento para o município | A frase antiga afirmava causa; o briefing pede reflexão |
 | 8 | Frase-chave da P4 | "70% a 99% dos votos: 3 em cada 4" (75,0%) | Com a chapa única incluída, seriam 73,4%; o recorte exato evita arredondar o número-vitrine |
+| 9 | Skill | Exemplo do meu tema removido e nova seção "Rigor e honestidade" com as regras aprendidas na revisão | O README exige skill genérica; as regras novas são as que de fato mudaram o painel |
 
 ## Instruções para o Claude
 
