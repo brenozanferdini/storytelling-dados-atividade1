@@ -52,6 +52,12 @@
   .limite { font-size: 13px; color: var(--suave); margin-top: 8px; }
   ol.reflexao { margin: 10px 0 0; padding-left: 22px; font-size: 15px; }
   ol.reflexao li { margin-bottom: 8px; }
+  /* Celular: o gráfico mantém largura mínima legível e rola de lado dentro da própria caixa (a página não rola) */
+  @media (max-width: 600px) {
+    .grafico { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .grafico svg { min-width: 560px; }
+    .grafico::before { content: "↔ arraste o gráfico para o lado"; display: block; font-size: 12px; color: var(--suave); margin-bottom: 4px; position: sticky; left: 0; }
+  }
 </style>
 </head>
 <body>

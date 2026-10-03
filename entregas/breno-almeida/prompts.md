@@ -187,6 +187,16 @@ b, pode seguir
 
 ---
 
+### Prompt 16
+
+```
+b, pode seguir
+```
+
+**Decisão:** a legibilidade no celular. A auditoria final (26 UFs testadas no seletor, sem erros) mostrou que, a 400px, os gráficos encolhiam e os rótulos caíam para cerca de 6px. **Depois:** em telas estreitas, cada gráfico mantém uma largura mínima legível e rola de lado dentro da própria caixa, com a dica "↔ arraste o gráfico para o lado". A página continua sem rolagem horizontal. **Por quê:** o público principal vê o painel projetado em sala. Redesenhar a biblioteca para o celular levaria uns 25 minutos, com risco de quebrar o desktop já validado. Escolhi a solução de 5 minutos e baixo risco.
+
+---
+
 ## O que eu faria diferente
 
 1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.
