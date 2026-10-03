@@ -1,6 +1,6 @@
 ## Qual história meu dashboard conta?
 
-Quase empate nas prefeituras: em 2024, 44% dos prefeitos ficaram e 56% chegaram. O equilíbrio muda por região (Sul renova mais, Norte mantém mais) e pela força nas urnas: acima de 70% dos votos, 3 em cada 4 vencedores eram reeleitos. O que decide o desempate?
+Quase empate nas prefeituras: em 2024, 44% dos prefeitos ficaram e 56% chegaram. O equilíbrio muda por região (Sul renova mais, Norte mantém mais) e pela força nas urnas: com 70% a 99% dos votos, 3 em cada 4 vencedores eram reeleitos. O que decide o desempate?
 
 ## Contexto do projeto
 
@@ -45,7 +45,7 @@ Na ordem da história (contexto → tensão → resolução):
   - P1: barra 100% com 3 partes, porque é parte de um todo e por isso não é pizza.
   - P2: barras horizontais ordenadas por UF, com linha de referência na média do Brasil.
   - P3: colunas por faixa de eleitorado, **todas em cinza**, com linha tracejada na média do Brasil. Num resultado nulo, nenhum destaque de cor para não exagerar diferenças pequenas.
-  - P4: colunas por faixa de votação, com destaque nas faixas de 70% ou mais.
+  - P4: colunas por faixa de votação, com destaque nas faixas de 70% a 99% (a chapa única, 68%, fica em coluna à parte).
   - P5: barras horizontais por grupo de ocupação, sem a categoria residual "Outras" (informada no texto), com as duas formas de trajetória política em azul.
 - **Taxas, não absolutos.** Regiões e faixas têm tamanhos muito diferentes; o n aparece no rótulo do eixo quando importa.
 - **Cor com intenção e segura para daltonismo.** Tudo é cinza, com um único destaque azul Okabe-Ito (#0072B2) por gráfico, e as caixas de reflexão têm borda laranja (#E69F00). Toda informação de cor tem redundância em rótulo direto ou texto. Não há cores de partido.
@@ -70,6 +70,7 @@ Depois da 1ª versão, fiz uma revisão estruturada com o Claude, uma decisão p
 | 5 | Diário de prompts | Fases e prompts literais, com reflexão | Registro fiel; não inventar prompts |
 | 6 | Card da galeria | Texto com até 280 caracteres e o achado mais forte | A galeria corta em 280 caracteres |
 | 7 | Conclusão | "Acompanha a força nas urnas" (associação), ex-prefeitos na hipótese 2 e fechamento para o município | A frase antiga afirmava causa; o briefing pede reflexão |
+| 8 | Frase-chave da P4 | "70% a 99% dos votos: 3 em cada 4" (75,0%) | Com a chapa única incluída, seriam 73,4%; o recorte exato evita arredondar o número-vitrine |
 
 ## Instruções para o Claude
 

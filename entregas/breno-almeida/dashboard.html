@@ -97,7 +97,7 @@
 
   <section class="pergunta" id="p4">
     <div class="num">Pergunta 4 · Quem permanece vence de que forma?</div>
-    <h2>Quem fica, fica com folga: entre os que venceram com 70% ou mais dos votos, 3 em cada 4 foram reeleitos.</h2>
+    <h2>Quem fica, fica com folga: entre os que venceram com 70% a 99% dos votos, 3 em cada 4 foram reeleitos.</h2>
     <p class="sub">% de prefeitos reeleitos em cada faixa de votação da chapa vencedora (% dos votos válidos no turno decisivo). n = 5.544, sem 9 chapas sem percentual.</p>
     <div class="grade"><div class="grafico" id="g4"></div><div class="leitura" id="l4"></div></div>
     <div class="provoca"><b>Para a turma:</b> votações tão altas indicam boa avaliação da gestão, falta de oposição organizada ou o peso da máquina pública? Que dado vocês precisariam para separar essas hipóteses?</div>
@@ -366,7 +366,7 @@ function desenhar() {
   const fv = [["< 40%", 0, 40], ["40–50%", 40, 50], ["50–60%", 50, 60], ["60–70%", 60, 70], ["70–80%", 70, 80], ["80–99%", 80, 99.99], ["100% (chapa única)", 99.99, 101]];
   const forca = fv.map(([c]) => { const s = sub.filter(d => d.fv === c); return { cat: c, t: taxa(s), n: soma(s) }; }).filter(d => d.n > 0);
   colunas("g4", forca, { cat: "cat", val: "t", formato: v => fmt.pct(v, 0), destaque: d => d.t >= 70 });
-  leitura("l4", `${uf ? `<b>${uf}</b>: ` : ""}Cada coluna mostra quantos dos vencedores daquela faixa de votação eram prefeitos buscando a reeleição. Quando a vitória foi <b>apertada (abaixo de 50%)</b>, só cerca de 1 em cada 5 vencedores era o prefeito. Acima de 70%, são <b>3 em cada 4</b>. Mesmo onde houve chapa única, 68% eram reeleições. A continuidade vem com votações expressivas.`);
+  leitura("l4", `${uf ? `<b>${uf}</b>: ` : ""}Cada coluna mostra quantos dos vencedores daquela faixa de votação eram prefeitos buscando a reeleição. Quando a vitória foi <b>apertada (abaixo de 50%)</b>, só cerca de 1 em cada 5 vencedores era o prefeito. De 70% a 99%, são <b>3 em cada 4</b>. Mesmo onde houve chapa única, 68% eram reeleições. A continuidade vem com votações expressivas.`);
 
   // P5 — ocupação dos novos ("Outras ocupações" fica fora do ranking e entra na leitura)
   const nv = sub.filter(d => !d.re), cont = {};

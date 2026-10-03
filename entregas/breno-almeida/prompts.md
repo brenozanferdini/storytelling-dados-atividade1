@@ -167,6 +167,16 @@ a, pode seguir
 
 ---
 
+### Prompt 14
+
+```
+a, pode seguir
+```
+
+**Decisão:** a precisão do número-vitrine. Pedi para conferir em pandas a frase "acima de 70% dos votos, 3 em cada 4 foram reeleitos", que aparecia no título da P4, no card e no `claude.md`. Incluindo a chapa única (100%), o número real é **73,4%** (939 de 1.280). De 70% a 99%, é **75,0%** (744 de 992). **Depois:** "com 70% a 99% dos votos, 3 em cada 4 foram reeleitos", nos três lugares. **Por quê:** o arredondamento era defensável, mas é o número mais visível do painel, e a chapa única já tem coluna própria no gráfico (68%).
+
+---
+
 ## O que eu faria diferente
 
 1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.
