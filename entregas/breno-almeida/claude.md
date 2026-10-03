@@ -33,7 +33,7 @@ Na ordem da história (contexto → tensão → resolução):
 4. **Quem permanece vence de que forma?** Com folga. Com votação abaixo de 50%, cerca de 20% dos vencedores eram reeleitos. Entre 70% e 99% dos votos, são 74% a 76%. A votação mediana dos reeleitos é 65%, contra 54% dos novos.
 5. **De onde vêm os que chegam?** A maioria vem de fora da política declarada: só 8% dos 3.084 novos prefeitos declararam trajetória política, sendo 172 vereadores ou deputados (5,6%) e 73 ex-prefeitos voltando ao cargo (2,4%), uma continuidade que aparece como renovação. Os grupos mais comuns são empresário ou comerciante (23,5%), agropecuária (12,8%) e servidor público (11,7%). Os 25% com ocupações dispersas ("Outras") ficam fora do ranking. A ocupação é autodeclarada e a base não tem histórico de cargos, então a trajetória política real pode ser maior.
 
-**Resolução:** continuidade e renovação estão quase empatadas, e o desempate depende da força do grupo no poder, que varia por território. Três hipóteses que a base não testa ficam para o debate: limite de mandatos, renovação de rosto e não de grupo, e avaliação da gestão.
+**Resolução:** continuidade e renovação quase empatam. O desempate varia por território e acompanha a força nas urnas, uma associação e não uma causa. Três hipóteses que a base não testa ficam para o debate: limite de mandatos, renovação de rosto ou de grupo (232 vices reeleitos e 73 ex-prefeitos que voltam) e avaliação da gestão. O painel termina devolvendo a pergunta ao município de cada aluno.
 
 ## Decisões de design
 
@@ -69,6 +69,7 @@ Depois da 1ª versão, fiz uma revisão estruturada com o Claude, uma decisão p
 | 4 | Seção da ocupação | Separar ex-prefeitos que voltam e tirar "Outras" do ranking | Ex-prefeito que volta é continuidade disfarçada; "Outras" é ruído |
 | 5 | Diário de prompts | Fases e prompts literais, com reflexão | Registro fiel; não inventar prompts |
 | 6 | Card da galeria | Texto com até 280 caracteres e o achado mais forte | A galeria corta em 280 caracteres |
+| 7 | Conclusão | "Acompanha a força nas urnas" (associação), ex-prefeitos na hipótese 2 e fechamento para o município | A frase antiga afirmava causa; o briefing pede reflexão |
 
 ## Instruções para o Claude
 
