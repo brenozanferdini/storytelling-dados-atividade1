@@ -2,43 +2,51 @@
 
 **Link compartilhado da conversa (opcional):** sessão no Claude Code (terminal), sem link público.
 
-Antes da aula, preparei um kit no Claude Code: um `CLAUDE.md` modelo, uma `SKILL.md` de dashboard narrativo, um template HTML com uma mini-biblioteca de gráficos em SVG puro e scripts de perfil de dados. O kit foi ensaiado com um dataset da Aula 03. No dia, os prompts foram estes, em ordem.
+Os prompts estão **literais e em ordem cronológica**. Organizei em três fases: preparação, construção e revisão crítica.
 
 ---
 
-## Prompt 1
+## Fase 0: preparação (antes da aula)
+
+Como o dataset era surpresa, preparei antes um kit no Claude Code: um `CLAUDE.md` modelo, uma skill de dashboard narrativo baseada nas Aulas 01–03, um template HTML com gráficos em SVG puro e scripts de perfil de dados. Ensaiei com uma base da Aula 03. No dia, só precisei adaptar o kit, e a skill entregue (`skill.md`) é a versão genérica dele.
+
+---
+
+## Fase 1: construção
+
+### Prompt 1
 
 ```
 vamos fazer uma atividade de storytelling de dados, mas eu ainda vou te mandar o enunciado
 ```
 
-**O que funcionou / o que mudei:** o Claude recuperou da memória do projeto que era o Datathon de hoje e que já havia um kit pronto. Ele pediu a base e o formato de entrega. Isso poupou o tempo de reexplicar a disciplina.
+**O que funcionou / o que mudei:** o Claude reconheceu pela memória do projeto que era o Datathon e que o kit estava pronto. Ele pediu a base, o formato de entrega e os critérios. Abrir assim poupou tempo de contexto.
 
 ---
 
-## Prompt 2
+### Prompt 2
 
 ```
 pergunta norteadora: o que as eleições de 2024 revelam sobre continuidade e renovação no comando
 de prefeituras? briefing: Uma escola de governo vai abrir um curso para liderança municipais e pediu
-um dashboard para a aula inaugural, sobre o contexto político em que essas lideranças vão atuar. A turma
-reúne gestores, servidores e assessores de diferentes regiões, que conhecem bem a própria realidade e
-pouco a dos outros municípios. Sua história deve levar essa turma a refletir sobre o equilíbrio entre
-quem permanece e quem chega ao poder municipal, e sobre o que pode estar por trás desse equilíbrio.
+um dashboard para a aula inaugural, sobre o contexto político em que essas lideranças vão atuar. a turma
+reune gestores, servidores e assessores de diferentes regiões, que conhecem bem a propria realidade e
+pouco a dos outros municipios. Sua historia deve levar essa turma a refletir sobre o equilibrio entre
+quem permanece e quem chega ao poder municipal, e sobre o que pode estar por tras desse equilibrio.
 esse é o enunciado
 ```
 
-**O que funcionou / o que mudei:** sem ver os dados, o Claude propôs quebrar a pergunta em 5 subperguntas (quanto, onde, quem tentou, porte, fatores). A ideia de "taxa de sucesso de quem tentou a reeleição" caiu depois, porque a base só tem eleitos. Aprendizado: a estrutura da história deve ser validada contra o dicionário antes de virar gráfico.
+**O que funcionou / o que mudei:** sem ver os dados, o Claude propôs quebrar a pergunta em 5 subperguntas: quanto, onde, quem tentou ficar, porte e fatores. A ideia de mostrar a "taxa de sucesso de quem tentou a reeleição" caiu logo depois, porque a base tem **só os eleitos**. Isso me mostrou que a estrutura da história precisa ser validada contra o dicionário antes de virar gráfico.
 
 ---
 
-## Prompt 3
+### Prompt 3
 
 ```
 procure o arquivo no idp
 ```
 
-**O que funcionou / o que mudei:** o Claude delegou a busca a um subagente de navegação, que abriu a tarefa no Canvas pelo meu Chrome. A base não estava no Canvas, e sim no GitHub do professor. O subagente baixou `eleitos.csv` e `dicionario.md` e copiou o enunciado completo. Isso mudou a entrega: virou Pull Request com 4 arquivos (incluindo este `prompts.md`), prazo às 11h30, e não um repositório próprio. O prompt que o Claude passou ao subagente foi:
+**O que funcionou / o que mudei:** o Claude delegou a busca a um subagente de navegação no meu Chrome. Descobri que a base não estava no Canvas, e sim no GitHub do professor, e que a entrega era um **Pull Request com 4 arquivos** (incluindo este diário), com prazo às 11h30. Isso mudou o plano de entrega que eu tinha preparado. O prompt que o Claude passou ao subagente foi:
 
 ```
 Tarefa: localizar e baixar no Canvas do IDP o dataset do Datathon de hoje e salvá-lo em
@@ -48,14 +56,99 @@ no Canvas. Retorne: onde estava, caminho dos arquivos, texto integral do enuncia
 primeiras linhas do CSV.
 ```
 
+Com a base em mãos, deixei o Claude seguir o procedimento da skill sem novo prompt: ler o dicionário, calcular as respostas em pandas, montar a 1ª versão e testar no navegador. Ao revisar o resultado, registrei o que mudou:
+- **Pergunta trocada:** "quem tentou ficar conseguiu?" virou "quem permanece vence de que forma?". A base responde essa pela faixa de votação, e ela virou o achado mais forte: de 13% para 76% de reeleitos conforme a votação cresce.
+- **Achado não planejado:** em 232 municípios, o prefeito é novo, mas o vice foi reeleito. Virou uma terceira fatia na P1 ("renovação com continuidade").
+- **Dois textos corrigidos** na 1ª versão: "a maioria se apresenta como empresário…" era falso, porque os grupos somam 49%. E "SC e RS lideram a troca" era impreciso, porque o AM empata com o RS.
+- **Ao ler o README do repositório,** vi que os dados embutidos tinham de estar **agregados**. Troquei os microdados (5.553 linhas) por combinações com contagem e reconferi os números contra o pandas: Brasil 44,5%, SC 31,2% e RS 37,4%.
+- **Pensando no público,** que conhece só a própria realidade, entraram o seletor **"Encontre seu estado"** e as caixas **"Para a turma"**.
+
 ---
 
-## Passos que o Claude executou a partir daí (sem novo prompt meu)
+### Prompt 4
 
-Registro para mostrar como o contexto (`claude.md`) e a skill (`skill.md`) guiaram o resultado.
+```
+pode seguir com as 5 subperguntas
+```
 
-1. **Leitura do dicionário e cálculos em pandas.** A taxa de reeleição saiu por região, UF, porte, faixa de votação, turno e gênero, e a ocupação foi cruzada para os novos prefeitos. Descoberta-chave: a base só tem vencedores, então "reeleito" significa "prefeito que ficou", não "candidato bem-sucedido". **Mudança:** a pergunta "quem tentou ficar conseguiu?" foi trocada por "quem permanece vence de que forma?", que a base responde com a faixa de votação.
-2. **Vice como sinal de continuidade.** Ao cruzar a declaração de reeleição do vice, apareceram 232 municípios com prefeito novo e vice reeleito. Eles viraram uma terceira fatia na P1 ("renovação com continuidade") e um argumento da conclusão.
-3. **Primeira versão do HTML** a partir do template, com os dados embutidos linha a linha. Testada no navegador (sem erros, sem rolagem horizontal a 400px). **Correções de texto:** "a maioria se apresenta como empresário…" era falso (os grupos somam 49%) e foi reescrito. "SC e RS lideram a troca" ficou "SC tem a menor continuidade do país".
-4. **Leitura do README do repositório.** Ele exige dados **já agregados**. **Mudança:** troquei os microdados (5.553 linhas) por 2.953 combinações com contagem `n`, e o JavaScript passou a calcular taxas ponderadas. O arquivo caiu de 750 KB para 370 KB. Os números foram reconferidos contra o pandas: 44,5% no Brasil, 31,2% em SC (92 de 295) e 37,4% no RS.
-5. **Seletor "Encontre seu estado"** e caixas "Para a turma", que respondem diretamente ao briefing (público que conhece só a própria realidade, aula que precisa de debate).
+**O que funcionou / o que mudei:** aprovei a estrutura. O Claude explicou quais subperguntas mudaram em relação à proposta inicial (P3 trocada e P5 dividida entre a seção e a conclusão) e por quê. O dashboard estava completo e verificado, mas eu queria uma revisão crítica antes de considerá-lo final.
+
+---
+
+## Fase 2: revisão crítica (questionamento estruturado)
+
+### Prompt 5
+
+```
+/grill-me para melhorar a entrega e tirar nota 10
+```
+
+**O que funcionou / o que mudei:** pedi ao Claude que me questionasse com a rubrica em mente, em vez de "melhorar" por conta própria. Ele levantou 6 pontos de uma vez: prazo, título, seção do porte, seção da ocupação, este diário e o card da galeria.
+
+---
+
+### Prompt 6
+
+```
+vamos ponto a ponto de forma detalhada
+```
+
+**O que funcionou / o que mudei:** 6 decisões de uma vez seria superficial. Pedi uma por vez, com prós e contras, para decidir de forma consciente.
+
+---
+
+### Prompt 7
+
+```
+a, pode criar o fork e abrir o PR
+```
+
+**Decisão:** entregar já e melhorar depois, em vez de entregar uma vez perto do prazo. **Por quê:** vale o horário do último commit, o PR se atualiza a cada push e eu nunca tinha testado a verificação automática. **Efeito:** o PR #4 abriu às 09h38 e recebeu "✅ Entrega verificada". Daí em diante, cada melhoria virou um commit com mensagem descritiva.
+
+---
+
+### Prompt 8
+
+```
+c, pode seguir
+```
+
+**Decisão:** o título principal. **Antes:** "Em 2024, 44 em cada 100 prefeitos ficaram e 56 chegaram. O equilíbrio muda conforme a região e conforme a força que o prefeito tinha nas urnas." **Depois:** "Quase empate: 44 prefeitos ficaram e 56 chegaram, a cada 100 cidades." **Por quê:** o título antigo dava três ideias de uma vez e não cabia no projetor. Rejeitei "Metade fica, metade chega" porque 44 × 56 não é metade, e rejeitei a versão em pergunta porque contradiz a regra da minha skill (título = conclusão). A palavra "empate" prepara o fio da conclusão: o que decide o desempate?
+
+---
+
+### Prompt 9
+
+```
+a, pode seguir
+```
+
+**Decisão:** a seção do porte, um resultado nulo (42% a 47%). **Antes:** "Quase não…", com a coluna de 100 mil+ em azul. **Depois:** "O tamanho da cidade não explica o equilíbrio…", com todas as colunas em cinza, linha tracejada na média do Brasil e uma frase final que leva à P4: "Se não é o porte, o que separa quem fica de quem sai? A resposta está nas urnas ↓". **Por quê:** o destaque azul em 39% (só 152 municípios) exagerava uma diferença pequena, justamente o tipo de ênfase enganosa da Atividade 3. O resultado nulo virou argumento: uma explicação óbvia descartada. **Ajuste no teste:** a linha cortava o rótulo "42%", e os rótulos ganharam contorno branco.
+
+---
+
+### Prompt 10
+
+```
+b, pode seguir
+```
+
+**Decisão:** a seção 5, sobre de onde vêm os que chegam. **Antes:** a maior barra era "Outras ocupações" (25%), uma categoria residual que roubava o primeiro olhar, e "Política" juntava tudo. **Depois:** "Outras" saiu do ranking e foi para o texto, e "Política" foi separada em vereador ou deputado (172) e **ex-prefeito voltando ao cargo (73)**. Os ex-prefeitos são uma continuidade que aparece como renovação, exatamente o tema. **Por quê:** antes de decidir, pedi para verificar se a base sustentava uma seção "renovação de rosto ou de grupo?". Não sustenta, porque não há histórico de cargos nem dados de 2020, e por isso não a criei. **Ajuste:** troquei "quem foi vice costuma declarar a profissão de origem" por "pode ter declarado", porque não dá para provar com a base.
+
+---
+
+### Prompt 11
+
+```
+b, pode seguir
+```
+
+**Decisão:** reorganizar este diário em fases, com todos os prompts literais, em vez de reescrever o bloco "o Claude executou sozinho" como se fossem prompts meus. **Por quê:** o enunciado pede os prompts que usei de fato. Inventar prompts trairia o registro. O que mostra a minha condução são as decisões e as reflexões.
+
+---
+
+## O que eu faria diferente
+
+1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.
+2. **Ler o README de entrega antes de construir.** A exigência de dados agregados me fez refazer a camada de dados depois da 1ª versão pronta.
+3. **Fazer a revisão crítica cedo e uma decisão por vez.** As melhorias mais importantes (o porte como ponte e os ex-prefeitos como continuidade disfarçada) vieram do questionamento, não da primeira geração. Ser questionado foi mais útil do que pedir ao agente "melhore".
