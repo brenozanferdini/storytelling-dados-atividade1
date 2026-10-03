@@ -1,6 +1,6 @@
 ## Qual história meu dashboard conta?
 
-Em 2024, 44 em cada 100 prefeitos brasileiros foram reeleitos e 56 chegaram ao cargo pela primeira vez naquele município. O equilíbrio é quase um empate, mas não é uniforme: o Sul renova mais que o Norte, e quem permanece costuma vencer com votações acima de 70%. O dashboard convida a turma a perguntar o que está por trás desse desempate: força do grupo no poder, limite de mandatos ou avaliação da gestão.
+Quase empate nas prefeituras: em 2024, 44% dos prefeitos ficaram e 56% chegaram. O equilíbrio muda por região (Sul renova mais, Norte mantém mais) e pela força nas urnas: acima de 70% dos votos, 3 em cada 4 vencedores eram reeleitos. O que decide o desempate?
 
 ## Contexto do projeto
 
@@ -29,22 +29,24 @@ Na ordem da história (contexto → tensão → resolução):
 
 1. **Quanto o comando das prefeituras mudou em 2024?** 44,5% dos prefeitos foram reeleitos (2.469 de 5.553). 51,4% das prefeituras trocaram prefeito e vice, e 4,2% trocaram o prefeito, mas mantiveram o vice.
 2. **O equilíbrio é o mesmo em todo o país?** Não. Os reeleitos são 37% no Sul, 43% no Sudeste, 48% no Nordeste, 50% no Centro-Oeste e 51% no Norte. Por estado, a taxa vai de 31% em SC a 67% em RR.
-3. **O tamanho do município muda o equilíbrio?** Pouco. A taxa fica entre 42% e 47% até 100 mil votos válidos e cai para 39% acima disso. Nos 51 municípios com segundo turno, ela é de 25%.
+3. **O tamanho do município muda o equilíbrio?** Não explica. A taxa fica entre 39% e 47% em todas as faixas de eleitorado, perto da média de 44,5%, sem tendência clara (a faixa de 100 mil+ tem só 152 municípios). A seção funciona como ponte: "se não é o porte, o que separa quem fica de quem sai?". À parte, nos 51 municípios com segundo turno, a taxa é de 25%.
 4. **Quem permanece vence de que forma?** Com folga. Com votação abaixo de 50%, cerca de 20% dos vencedores eram reeleitos. Entre 70% e 99% dos votos, são 74% a 76%. A votação mediana dos reeleitos é 65%, contra 54% dos novos.
-5. **De onde vêm os que chegam?** Só 8% dos 3.084 novos prefeitos declararam ocupação política (ex-prefeito, vereador, deputado). Os grupos mais comuns são empresário ou comerciante (24%), agropecuária (13%) e servidor público (12%). A ocupação é autodeclarada e subestima a trajetória política.
+5. **De onde vêm os que chegam?** A maioria vem de fora da política declarada: só 8% dos 3.084 novos prefeitos declararam trajetória política, sendo 172 vereadores ou deputados (5,6%) e 73 ex-prefeitos voltando ao cargo (2,4%), uma continuidade que aparece como renovação. Os grupos mais comuns são empresário ou comerciante (23,5%), agropecuária (12,8%) e servidor público (11,7%). Os 25% com ocupações dispersas ("Outras") ficam fora do ranking. A ocupação é autodeclarada e a base não tem histórico de cargos, então a trajetória política real pode ser maior.
 
 **Resolução:** continuidade e renovação estão quase empatadas, e o desempate depende da força do grupo no poder, que varia por território. Três hipóteses que a base não testa ficam para o debate: limite de mandatos, renovação de rosto e não de grupo, e avaliação da gestão.
 
 ## Decisões de design
 
 - **Seguir a skill `dashboard-narrativo-setor-publico` (`skill.md`).**
+- **`<h1>` curto e com número exato:** "Quase empate: 44 prefeitos ficaram e 56 chegaram, a cada 100 cidades". A região e a votação ficam no subtítulo como gancho.
 - **Títulos que dão a resposta.** Cada `<h2>` é a conclusão da pergunta ("Quem fica, fica com folga…"), e a pergunta aparece pequena acima dele.
 - **Ordem da narrativa:** o quanto mudou (contexto) → onde (o que a turma não conhece) → porte e votação (tensão: o que explica) → quem chega → hipóteses para debate (resolução).
 - **Gráficos escolhidos pela intenção:**
   - P1: barra 100% com 3 partes, porque é parte de um todo e por isso não é pizza.
   - P2: barras horizontais ordenadas por UF, com linha de referência na média do Brasil.
-  - P3 e P4: colunas por faixa ordenada.
-  - P5: barras horizontais de grupos de ocupação.
+  - P3: colunas por faixa de eleitorado, **todas em cinza**, com linha tracejada na média do Brasil. Num resultado nulo, nenhum destaque de cor para não exagerar diferenças pequenas.
+  - P4: colunas por faixa de votação, com destaque nas faixas de 70% ou mais.
+  - P5: barras horizontais por grupo de ocupação, sem a categoria residual "Outras" (informada no texto), com as duas formas de trajetória política em azul.
 - **Taxas, não absolutos.** Regiões e faixas têm tamanhos muito diferentes; o n aparece no rótulo do eixo quando importa.
 - **Cor com intenção e segura para daltonismo.** Tudo é cinza, com um único destaque azul Okabe-Ito (#0072B2) por gráfico, e as caixas de reflexão têm borda laranja (#E69F00). Toda informação de cor tem redundância em rótulo direto ou texto. Não há cores de partido.
 - **Seletor "Encontre seu estado".** É a resposta ao briefing (a turma conhece só a própria realidade): todos os gráficos se recalculam para a UF escolhida, e o estado aparece em azul no ranking.
@@ -54,6 +56,19 @@ Na ordem da história (contexto → tensão → resolução):
   - Análise por partido, que é o tema 3 de outro colega e diluiria a história.
   - Gênero e idade, cujas diferenças entre reeleitos e novos são pequenas (45% × 44% de reeleição entre mulheres e homens) e não mudam a mensagem.
 - **Dados embutidos já agregados.** São 2.953 combinações de UF × região × reeleição × faixa de votação × porte × grupo de ocupação, com contagem n, geradas por `ferramentas/preparar_continuidade.py`. O HTML não lê o CSV.
+
+## Decisões da revisão crítica
+
+Depois da 1ª versão, fiz uma revisão estruturada com o Claude, uma decisão por vez (detalhes em `prompts.md`, prompts 5 a 11):
+
+| # | Ponto revisado | Decisão | Motivo |
+|---|---|---|---|
+| 1 | Estratégia de prazo | Abrir o PR cedo e melhorar com pushes | Vale o último commit; testar a verificação automática cedo |
+| 2 | Título principal | "Quase empate: 44 ficaram e 56 chegaram, a cada 100 cidades" | Uma ideia, número exato, legível no projetor; "metade" seria impreciso |
+| 3 | Seção do porte (resultado nulo) | Tudo cinza, linha da média e frase-ponte para a P4 | O destaque em 39% exagerava uma diferença pequena |
+| 4 | Seção da ocupação | Separar ex-prefeitos que voltam e tirar "Outras" do ranking | Ex-prefeito que volta é continuidade disfarçada; "Outras" é ruído |
+| 5 | Diário de prompts | Fases e prompts literais, com reflexão | Registro fiel; não inventar prompts |
+| 6 | Card da galeria | Texto com até 280 caracteres e o achado mais forte | A galeria corta em 280 caracteres |
 
 ## Instruções para o Claude
 

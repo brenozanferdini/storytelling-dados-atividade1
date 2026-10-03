@@ -147,6 +147,16 @@ b, pode seguir
 
 ---
 
+### Prompt 12
+
+```
+a, pode seguir
+```
+
+**Decisão:** o texto do card da galeria. Li o script `gerar_galeria.py` e vi que o card corta em 280 caracteres. O texto antigo tinha cerca de 450 e seria cortado no meio, além de descrever o título antigo. **Depois (259 caracteres):** "Quase empate nas prefeituras: em 2024, 44% dos prefeitos ficaram e 56% chegaram. O equilíbrio muda por região (Sul renova mais, Norte mantém mais) e pela força nas urnas: acima de 70% dos votos, 3 em cada 4 vencedores eram reeleitos. O que decide o desempate?" **Por quê:** num mural com vários cards, um número concreto (3 em cada 4) chama mais atenção do que a descrição do público. Aproveitei para sincronizar todo o `claude.md` com as decisões da revisão.
+
+---
+
 ## O que eu faria diferente
 
 1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.
