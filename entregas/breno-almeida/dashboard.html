@@ -58,8 +58,8 @@
 
 <header>
   <div class="rotulo">Aula inaugural · Lideranças municipais · Eleições de 2024</div>
-  <h1>Em 2024, 44 em cada 100 prefeitos ficaram e 56 chegaram. O equilíbrio muda conforme a região e conforme a força que o prefeito tinha nas urnas.</h1>
-  <p>Vocês vão governar ou assessorar uma das 5.553 prefeituras retratadas aqui. Cada um conhece bem o próprio município. Este painel mostra o que aconteceu nos outros e convida a turma a perguntar <b>por que</b> uns mudam e outros permanecem.</p>
+  <h1>Quase empate: 44 prefeitos ficaram e 56 chegaram, a cada 100 cidades</h1>
+  <p>O empate esconde diferenças: o Sul renova mais que o Norte, e quem fica costuma vencer com folga. Vocês vão governar ou assessorar uma das 5.553 prefeituras retratadas aqui. Cada um conhece bem o próprio município. Este painel mostra o que aconteceu nos outros e convida a turma a perguntar <b>por que</b> uns mudam e outros permanecem.</p>
 </header>
 
 <main>
@@ -89,8 +89,8 @@
 
   <section class="pergunta" id="p3">
     <div class="num">Pergunta 3 · O tamanho do município muda o equilíbrio?</div>
-    <h2>Quase não. A continuidade fica entre 42% e 47% em quase todos os portes e só cai nos maiores eleitorados (39%).</h2>
-    <p class="sub">% de prefeitos reeleitos por faixa de eleitorado. O eleitorado é medido pelos votos válidos para prefeito no município, no turno decisivo.</p>
+    <h2>O tamanho da cidade não explica o equilíbrio: a continuidade fica perto de 44% do menor ao maior município.</h2>
+    <p class="sub">% de prefeitos reeleitos por faixa de eleitorado (votos válidos para prefeito no turno decisivo). A linha tracejada marca a média do Brasil (44,5%).</p>
     <div class="grade"><div class="grafico" id="g3"></div><div class="leitura" id="l3"></div></div>
     <div class="provoca"><b>Para a turma:</b> nas cidades grandes, que costumam ter mais candidatos, mais imprensa e segundo turno, a disputa é mais aberta. Isso favorece ou dificulta quem governa?</div>
   </section>
@@ -325,6 +325,15 @@ const sel = document.getElementById("uf");
 UFS.forEach(u => { const o = document.createElement("option"); o.value = u; o.textContent = u; sel.appendChild(o); });
 
 const REG = { Sul: 1 };
+/* Linha de referência tracejada sobre o gráfico de colunas (mesma escala da função colunas) */
+function linhaRef(id, valores, ref, rotulo) {
+  const s = document.querySelector(`#${id} svg`), W = 720, H = 300, base = 40, topo = 24;
+  const max = bonito(Math.max(...valores)), y = (H - base) - ref / max * (H - base - topo);
+  el("line", { x1: 20, x2: W - 20, y1: y, y2: y, stroke: CORES.tinta, "stroke-dasharray": "4 3" }, s);
+  txt(s, W - 20, y - 6, `${rotulo}: ${fmt.pct(ref)}`, { "text-anchor": "end", fill: CORES.tinta, "font-weight": 700 });
+  // rótulos por cima da linha, com contorno branco para não serem cortados por ela
+  s.querySelectorAll("text").forEach(t => { t.setAttribute("stroke", "#fff"); t.setAttribute("stroke-width", 4); t.setAttribute("paint-order", "stroke"); s.appendChild(t); });
+}
 function desenhar() {
   const uf = sel.value;
   const sub = uf ? DADOS.filter(d => d.uf === uf) : DADOS;
@@ -348,8 +357,9 @@ function desenhar() {
   // P3 — porte
   const faixas = [["até 5 mil", 0, 5e3], ["5–10 mil", 5e3, 1e4], ["10–20 mil", 1e4, 2e4], ["20–50 mil", 2e4, 5e4], ["50–100 mil", 5e4, 1e5], ["100 mil +", 1e5, 1e12]];
   const porte = faixas.map(([c]) => { const s = sub.filter(d => d.pt === c); return { cat: c, t: taxa(s), n: soma(s) }; }).filter(d => d.n > 0);
-  colunas("g3", porte.map(d => ({ ...d, cat: `${d.cat} (n=${fmt.num(d.n)})` })), { cat: "cat", val: "t", formato: v => fmt.pct(v, 0), destaque: d => d.cat.startsWith("100 mil") });
-  leitura("l3", `${uf ? `<b>${uf}</b>: ` : ""}Cada coluna mostra o percentual de reeleitos entre municípios com o mesmo número de votos válidos. Do menor ao médio porte, o patamar fica estável, perto da média. Só nos <b>maiores eleitorados</b> a continuidade cai. Nos 51 municípios que tiveram segundo turno, apenas <b>25%</b> dos prefeitos foram reeleitos.${uf ? "<br><br>Atenção: no recorte por estado, colunas com n pequeno variam muito." : ""}`);
+  colunas("g3", porte.map(d => ({ ...d, cat: `${d.cat} (n=${fmt.num(d.n)})` })), { cat: "cat", val: "t", formato: v => fmt.pct(v, 0) });
+  linhaRef("g3", porte.map(d => d.t), uf ? taxa(sub) : BR, uf ? `média ${uf}` : "Brasil");
+  leitura("l3", `${uf ? `<b>${uf}</b>: ` : ""}Cada coluna mostra o percentual de reeleitos entre municípios de eleitorado parecido. Todas ficam <b>perto da linha da média</b>: de 39% a 47%, sem tendência clara. A pequena queda nos maiores eleitorados reúne só 152 municípios. Uma exceção vale nota: nos 51 municípios que tiveram segundo turno, apenas 25% dos prefeitos foram reeleitos.<br><br><b>Se não é o porte, o que separa quem fica de quem sai? A resposta está nas urnas ↓</b>${uf ? "<br><br>Atenção: no recorte por estado, colunas com n pequeno variam muito." : ""}`);
 
   // P4 — força nas urnas
   const fv = [["< 40%", 0, 40], ["40–50%", 40, 50], ["50–60%", 50, 60], ["60–70%", 60, 70], ["70–80%", 70, 80], ["80–99%", 80, 99.99], ["100% (chapa única)", 99.99, 101]];
