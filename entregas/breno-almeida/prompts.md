@@ -217,6 +217,26 @@ a, pode seguir
 
 ---
 
+### Prompt 19
+
+```
+a, pode seguir
+```
+
+**Decisão:** manter "Breno Almeida" como nome completo na descrição do PR. O nome da pasta (`breno-almeida`) já segue o padrão, e não houve mudança nos arquivos.
+
+---
+
+### Prompt 20
+
+```
+a, pode seguir
+```
+
+**Decisão:** congelar a entrega às 10h, uma hora e meia antes do prazo, em vez de fazer o modo escuro ou redesenhar a biblioteca para o celular. **Por quê:** o retorno desses itens na rubrica é pequeno e eles poderiam introduzir erro numa versão já verificada (13 commits, todos com "✅ Entrega verificada"). O último teste é a minha leitura do painel como público-alvo.
+
+---
+
 ## O que eu faria diferente
 
 1. **Ler o dicionário antes de propor a estrutura da história.** A "taxa de sucesso na reeleição" parecia óbvia e era impossível com uma base só de eleitos. Os limites da base definem as perguntas possíveis.
